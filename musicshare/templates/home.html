@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{%for i in post%}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+            <a class="mr-2" href="{% url 'profile' %}">{{ i.author }}</a>
+            <small class="text-muted">{{ i.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'music-detail' i.id %}">{{ i.title }}</a></h2>
+            <p class="article-content">{{ i.content }}</p>
+            <audio controls >
+                <source src="{{ i.file.url }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </article>
+
+    {%endfor%}
+{%endblock%}
